@@ -1,10 +1,16 @@
-import { Module } from '@nestjs/common';
+import { ClassProvider, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppServiceImpl } from './app.service.impl';
+
+const appService: ClassProvider = {
+  provide: 'appService',
+  useClass: AppServiceImpl
+}
 
 @Module({
   imports: [],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [appService],
 })
+
 export class AppModule {}
